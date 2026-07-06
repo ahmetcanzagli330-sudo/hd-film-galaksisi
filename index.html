@@ -31,13 +31,13 @@ font-size:42px;
 }
 
 header p{
-margin-top:10px;
 color:#ccc;
+margin-top:10px;
 }
 
 .film-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:25px;
 padding:25px;
 }
@@ -46,25 +46,35 @@ padding:25px;
 background:#222;
 border-radius:12px;
 overflow:hidden;
+transition:.3s;
 cursor:pointer;
-transition:0.3s;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
+box-shadow:0 0 10px rgba(0,0,0,.5);
 }
 
 .film:hover{
-transform:scale(1.05);
+transform:scale(1.03);
 }
 
 .film img{
 width:100%;
-height:420px;
+height:450px;
 object-fit:cover;
 display:block;
 }
 
-.film h3{
+.film-info{
 padding:15px;
-text-align:center;
+}
+
+.film-info h3{
+margin-bottom:10px;
+font-size:24px;
+}
+
+.film-info p{
+margin:6px 0;
+color:#ddd;
+font-size:14px;
 }
 
 .modal{
@@ -74,7 +84,7 @@ left:0;
 top:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.95);
+background:rgba(0,0,0,.95);
 z-index:9999;
 }
 
@@ -100,6 +110,7 @@ border-radius:10px;
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -111,17 +122,47 @@ border-radius:10px;
 
 <div class="film" onclick="openTrailer('Ki4haFrqSrw')">
 <img src="yesil-yol.jpg">
+
+<div class="film-info">
 <h3>Yeşil Yol</h3>
+<p><b>IMDb:</b> 8.6/10</p>
+<p><b>Yaş Sınırı:</b> 13+</p>
+<p><b>Tür:</b> Dram, Suç</p>
+<p><b>Yönetmen:</b> Frank Darabont</p>
+<p><b>Oyuncular:</b> Tom Hanks, Michael Clarke Duncan</p>
+<p><b>Özet:</b> Bir hapishane görevlisinin hayatı, olağanüstü güçlere sahip bir mahkumla tanışınca değişir.</p>
+</div>
+
 </div>
 
 <div class="film" onclick="openTrailer('NmzuHjWmXOc')">
 <img src="movie_278_dd75019a-fc38-4174-aeac-c13181139fa6.webp">
+
+<div class="film-info">
 <h3>Esaretin Bedeli</h3>
+<p><b>IMDb:</b> 9.3/10</p>
+<p><b>Yaş Sınırı:</b> 16+</p>
+<p><b>Tür:</b> Dram</p>
+<p><b>Yönetmen:</b> Frank Darabont</p>
+<p><b>Oyuncular:</b> Tim Robbins, Morgan Freeman</p>
+<p><b>Özet:</b> Haksız yere hapse giren bir adamın yıllar süren özgürlük mücadelesini anlatır.</p>
+</div>
+
 </div>
 
 <div class="film" onclick="openTrailer('zSWdZVtXT7E')">
 <img src="8e0dab8699be85720ce55845065bf6dc.jpg">
+
+<div class="film-info">
 <h3>Interstellar</h3>
+<p><b>IMDb:</b> 8.7/10</p>
+<p><b>Yaş Sınırı:</b> 13+</p>
+<p><b>Tür:</b> Bilim Kurgu, Macera</p>
+<p><b>Yönetmen:</b> Christopher Nolan</p>
+<p><b>Oyuncular:</b> Matthew McConaughey, Anne Hathaway</p>
+<p><b>Özet:</b> İnsanlığı kurtarmak için bir grup astronot yeni yaşanabilir gezegenler aramak üzere uzaya çıkar.</p>
+</div>
+
 </div>
 
 </div>
