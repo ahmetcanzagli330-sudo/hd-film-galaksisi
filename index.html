@@ -138,14 +138,23 @@ border:none;
 <h1>HD Film Galaksisi</h1>
 <p>Film Fragmanları ve Bilgileri</p>
 </header>
-
+<div style="text-align:center;padding:15px;">
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Film Ara..."
+onkeyup="searchFilms()"
+style="width:80%;max-width:500px;padding:12px;border:none;border-radius:8px;font-size:16px;">
+</div>
 <div class="kategoriler">
 <button onclick="filterFilms('all')">🎬 Tümü</button>
 <button onclick="filterFilms('Dram')">🎭 Dram</button>
 <button onclick="filterFilms('Bilim Kurgu')">🚀 Bilim Kurgu</button>
 <button onclick="showFavorites()">⭐ Favoriler</button>
 </div>
-
+<button onclick="filterFilms('Aksiyon')">🔥 Aksiyon</button>
+<button onclick="filterFilms('Korku')">👻 Korku</button>
+<button onclick="filterFilms('Komedi')">😂 Komedi</button>
 <div class="film-grid">
 
 <div class="film" data-category="Dram" onclick="openTrailer('Ki4haFrqSrw')">
