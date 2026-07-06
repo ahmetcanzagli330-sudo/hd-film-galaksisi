@@ -10,48 +10,70 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
 background:#141414;
 color:white;
-font-family:Arial,sans-serif;
 }
 
 header{
 background:#000;
-padding:20px;
+padding:25px;
 text-align:center;
-border-bottom:2px solid #e50914;
+border-bottom:3px solid #e50914;
 }
 
 header h1{
 color:#e50914;
-font-size:42px;
+font-size:45px;
 }
 
 header p{
 color:#ccc;
-margin-top:10px;
+margin-top:8px;
 }
 
-.kategoriler{
+.search-box{
 text-align:center;
 padding:20px;
 }
 
+.search-box input{
+width:90%;
+max-width:500px;
+padding:12px;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+.kategoriler{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+padding-bottom:20px;
+}
+
 .kategoriler button{
 padding:10px 15px;
-margin:5px;
 border:none;
-border-radius:5px;
+border-radius:6px;
+background:#333;
+color:white;
 cursor:pointer;
 font-weight:bold;
 }
 
+.kategoriler button:hover{
+background:#e50914;
+}
+
 .film-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:25px;
 padding:25px;
 }
@@ -61,7 +83,7 @@ background:#222;
 border-radius:12px;
 overflow:hidden;
 transition:.3s;
-cursor:pointer;
+position:relative;
 }
 
 .film:hover{
@@ -70,9 +92,8 @@ transform:scale(1.03);
 
 .film img{
 width:100%;
-height:450px;
+height:420px;
 object-fit:cover;
-display:block;
 }
 
 .film-info{
@@ -81,6 +102,7 @@ padding:15px;
 
 .film-info h3{
 margin-bottom:10px;
+font-size:24px;
 }
 
 .film-info p{
@@ -90,21 +112,32 @@ color:#ddd;
 }
 
 .fav-btn{
-margin-top:10px;
-padding:10px;
 width:100%;
+padding:10px;
+margin-top:10px;
 background:#e50914;
 color:white;
 border:none;
+border-radius:6px;
 cursor:pointer;
-border-radius:5px;
+}
+
+.trailer-btn{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:#444;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
 }
 
 .modal{
 display:none;
 position:fixed;
-left:0;
 top:0;
+left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,.95);
@@ -112,22 +145,37 @@ z-index:9999;
 }
 
 .modal-content{
-width:85%;
+width:90%;
 max-width:1000px;
-margin:40px auto;
+margin:30px auto;
 }
 
 .close{
 float:right;
-font-size:45px;
+font-size:40px;
 cursor:pointer;
 color:white;
+margin-bottom:10px;
 }
 
 iframe{
 width:100%;
 height:600px;
 border:none;
+}
+
+@media(max-width:768px){
+.film img{
+height:300px;
+}
+
+iframe{
+height:300px;
+}
+
+header h1{
+font-size:30px;
+}
 }
 </style>
 </head>
@@ -138,63 +186,90 @@ border:none;
 <h1>HD Film Galaksisi</h1>
 <p>Film Fragmanları ve Bilgileri</p>
 </header>
-<div style="text-align:center;padding:15px;">
+
+<div class="search-box">
 <input
 type="text"
 id="searchInput"
 placeholder="🔍 Film Ara..."
-onkeyup="searchFilms()"
-style="width:80%;max-width:500px;padding:12px;border:none;border-radius:8px;font-size:16px;">
+onkeyup="searchFilms()">
 </div>
-<div> class="kategoriler">
+
+<div class="kategoriler">
 <button onclick="filterFilms('all')">🎬 Tümü</button>
 <button onclick="filterFilms('Dram')">🎭 Dram</button>
 <button onclick="filterFilms('Bilim Kurgu')">🚀 Bilim Kurgu</button>
-<button onclick="showFavorites()">⭐ Favoriler</button>
 <button onclick="filterFilms('Aksiyon')">🔥 Aksiyon</button>
 <button onclick="filterFilms('Korku')">👻 Korku</button>
 <button onclick="filterFilms('Komedi')">😂 Komedi</button>
-<div> class="film-grid">
+<button onclick="showFavorites()">⭐ Favoriler</button>
+</div>
 
-<div class="film" data-category="Dram" onclick="openTrailer('Ki4haFrqSrw')">
+<div class="film-grid">
+
+<div class="film" data-category="Dram">
 <img src="yesil-yol.jpg">
+
 <div class="film-info">
 <h3>Yeşil Yol</h3>
-<p><b>IMDb:</b> 8.6/10</p>
+<p><b>IMDb:</b> ⭐ 8.6</p>
 <p><b>Yaş:</b> 13+</p>
 <p><b>Tür:</b> Dram</p>
 <p><b>Yönetmen:</b> Frank Darabont</p>
 <p><b>Oyuncular:</b> Tom Hanks, Michael Clarke Duncan</p>
-<p><b>Özet:</b> Olağanüstü güçlere sahip bir mahkumun hikayesi.</p>
-<button class="fav-btn" onclick="event.stopPropagation();toggleFavorite('Yeşil Yol')">⭐ Favorilere Ekle</button>
+<p><b>Özet:</b> Olağanüstü güçlere sahip bir mahkumun etkileyici hikayesi.</p>
+
+<button class="trailer-btn" onclick="openTrailer('Ki4haFrqSrw')">
+🎬 Fragmanı İzle
+</button>
+
+<button class="fav-btn" onclick="toggleFavorite('Yeşil Yol')">
+⭐ Favorilere Ekle
+</button>
 </div>
 </div>
 
-<div class="film" data-category="Dram" onclick="openTrailer('NmzuHjWmXOc')">
+<div class="film" data-category="Dram">
 <img src="movie_278_dd75019a-fc38-4174-aeac-c13181139fa6.webp">
+
 <div class="film-info">
 <h3>Esaretin Bedeli</h3>
-<p><b>IMDb:</b> 9.3/10</p>
+<p><b>IMDb:</b> ⭐ 9.3</p>
 <p><b>Yaş:</b> 16+</p>
 <p><b>Tür:</b> Dram</p>
 <p><b>Yönetmen:</b> Frank Darabont</p>
 <p><b>Oyuncular:</b> Tim Robbins, Morgan Freeman</p>
-<p><b>Özet:</b> Haksız yere hapse giren bir adamın özgürlük mücadelesi.</p>
-<button class="fav-btn" onclick="event.stopPropagation();toggleFavorite('Esaretin Bedeli')">⭐ Favorilere Ekle</button>
+<p><b>Özet:</b> Haksız yere hapse giren bir adamın özgürlüğe uzanan yolculuğu.</p>
+
+<button class="trailer-btn" onclick="openTrailer('NmzuHjWmXOc')">
+🎬 Fragmanı İzle
+</button>
+
+<button class="fav-btn" onclick="toggleFavorite('Esaretin Bedeli')">
+⭐ Favorilere Ekle
+</button>
 </div>
 </div>
 
-<div class="film" data-category="Bilim Kurgu" onclick="openTrailer('zSWdZVtXT7E')">
+<div class="film" data-category="Bilim Kurgu">
 <img src="8e0dab8699be85720ce55845065bf6dc.jpg">
+
 <div class="film-info">
 <h3>Interstellar</h3>
-<p><b>IMDb:</b> 8.7/10</p>
+<p><b>IMDb:</b> ⭐ 8.7</p>
 <p><b>Yaş:</b> 13+</p>
 <p><b>Tür:</b> Bilim Kurgu</p>
 <p><b>Yönetmen:</b> Christopher Nolan</p>
 <p><b>Oyuncular:</b> Matthew McConaughey, Anne Hathaway</p>
-<p><b>Özet:</b> İnsanlık için yeni bir yuva arayan astronotların hikayesi.</p>
-<button class="fav-btn" onclick="event.stopPropagation();toggleFavorite('Interstellar')">⭐ Favorilere Ekle</button>
+<p><b>Özet:</b> İnsanlığın geleceği için yıldızlararası yolculuk.</p>
+
+<button class="trailer-btn" onclick="openTrailer('zSWdZVtXT7E')">
+🎬 Fragmanı İzle
+</button>
+
+<button class="fav-btn" onclick="toggleFavorite('Interstellar')">
+⭐ Favorilere Ekle
+</button>
 </div>
 </div>
 
@@ -208,6 +283,7 @@ style="width:80%;max-width:500px;padding:12px;border:none;border-radius:8px;font
 </div>
 
 <script>
+
 function openTrailer(videoId){
 document.getElementById("trailerModal").style.display="block";
 document.getElementById("trailerFrame").src=
@@ -220,52 +296,87 @@ document.getElementById("trailerFrame").src="";
 }
 
 function filterFilms(category){
+
 const films=document.querySelectorAll('.film');
 
 films.forEach(film=>{
-if(category==='all'){
-film.style.display='block';
+
+if(category==="all"){
+film.style.display="block";
 }else{
 film.style.display=
-film.dataset.category===category?'block':'none';
+film.dataset.category===category
+? "block"
+: "none";
 }
+
+});
+}
+
+function searchFilms(){
+
+let input=document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+let films=document.querySelectorAll(".film");
+
+films.forEach(film=>{
+
+let title=
+film.querySelector("h3")
+.innerText
+.toLowerCase();
+
+film.style.display=
+title.includes(input)
+? "block"
+: "none";
+
 });
 }
 
 function toggleFavorite(movie){
+
 let favorites=
-JSON.parse(localStorage.getItem('favorites'))||[];
+JSON.parse(localStorage.getItem("favorites")) || [];
 
 if(favorites.includes(movie)){
-favorites=favorites.filter(f=>f!==movie);
-alert(movie+' favorilerden kaldırıldı');
+favorites=
+favorites.filter(f=>f!==movie);
+alert(movie+" favorilerden kaldırıldı");
 }else{
 favorites.push(movie);
-alert(movie+' favorilere eklendi');
+alert(movie+" favorilere eklendi");
 }
 
 localStorage.setItem(
-'favorites',
+"favorites",
 JSON.stringify(favorites)
 );
 }
 
 function showFavorites(){
-const favorites=
-JSON.parse(localStorage.getItem('favorites'))||[];
 
-const films=document.querySelectorAll('.film');
+let favorites=
+JSON.parse(localStorage.getItem("favorites")) || [];
+
+let films=document.querySelectorAll(".film");
 
 films.forEach(film=>{
-const title=
-film.querySelector('h3').innerText;
+
+let title=
+film.querySelector("h3").innerText;
 
 film.style.display=
 favorites.includes(title)
-?'block'
-:'none';
+? "block"
+: "none";
+
 });
 }
+
 </script>
 
 </body>
