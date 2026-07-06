@@ -9,19 +9,18 @@
 body{
     margin:0;
     background:#111;
-    color:#fff;
+    color:white;
     font-family:Arial,sans-serif;
 }
 
 header{
     background:#000;
-    text-align:center;
     padding:20px;
+    text-align:center;
 }
 
 header h1{
     color:red;
-    margin:0;
 }
 
 .film-grid{
@@ -47,30 +46,31 @@ header h1{
     width:100%;
     height:450px;
     object-fit:cover;
-    display:block;
 }
 
 .film h3{
     text-align:center;
-    margin:10px 0;
 }
 
 .modal{
     display:none;
     position:fixed;
-    inset:0;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
     background:rgba(0,0,0,.95);
-    z-index:9999;
 }
 
 .modal-content{
     width:80%;
-    margin:40px auto;
+    margin:50px auto;
 }
 
 .close{
-    float:right;
+    color:white;
     font-size:40px;
+    float:right;
     cursor:pointer;
 }
 
@@ -97,12 +97,12 @@ iframe{
 </div>
 
 <div class="film" onclick="openTrailer('NmzuHjWmXOc')">
-<img src="8e0dab8699be85720ce55845065bf6dc.jpg">
+<img src="SK-Yayin-Posteri.jpg">
 <h3>Esaretin Bedeli</h3>
 </div>
 
 <div class="film" onclick="openTrailer('zSWdZVtXT7E')">
-<img src="SK-Yayin-Posteri.jpg">
+<img src="8e0dab8699be85720ce55845065bf6dc.jpg">
 <h3>Interstellar</h3>
 </div>
 
@@ -119,14 +119,14 @@ iframe{
 
 <script>
 function openTrailer(videoId){
-    document.getElementById("trailerModal").style.display="block";
-    document.getElementById("trailerFrame").src=
-    "https://www.youtube.com/embed/"+videoId+"?autoplay=1";
+document.getElementById("trailerModal").style.display="block";
+document.getElementById("trailerFrame").src =
+"https://www.youtube.com/embed/"+videoId+"?autoplay=1";
 }
 
 function closeTrailer(){
-    document.getElementById("trailerModal").style.display="none";
-    document.getElementById("trailerFrame").src="";
+document.getElementById("trailerModal").style.display="none";
+document.getElementById("trailerFrame").src="";
 }
 </script>
 
