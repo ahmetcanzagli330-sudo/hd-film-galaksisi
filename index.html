@@ -35,6 +35,20 @@ color:#ccc;
 margin-top:10px;
 }
 
+.kategoriler{
+text-align:center;
+padding:20px;
+}
+
+.kategoriler button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:bold;
+}
+
 .film-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -48,7 +62,6 @@ border-radius:12px;
 overflow:hidden;
 transition:.3s;
 cursor:pointer;
-box-shadow:0 0 10px rgba(0,0,0,.5);
 }
 
 .film:hover{
@@ -68,13 +81,23 @@ padding:15px;
 
 .film-info h3{
 margin-bottom:10px;
-font-size:24px;
 }
 
 .film-info p{
-margin:6px 0;
-color:#ddd;
+margin:5px 0;
 font-size:14px;
+color:#ddd;
+}
+
+.fav-btn{
+margin-top:10px;
+padding:10px;
+width:100%;
+background:#e50914;
+color:white;
+border:none;
+cursor:pointer;
+border-radius:5px;
 }
 
 .modal{
@@ -99,14 +122,12 @@ float:right;
 font-size:45px;
 cursor:pointer;
 color:white;
-margin-bottom:10px;
 }
 
 iframe{
 width:100%;
 height:600px;
 border:none;
-border-radius:10px;
 }
 </style>
 </head>
@@ -118,66 +139,63 @@ border-radius:10px;
 <p>Film Fragmanları ve Bilgileri</p>
 </header>
 
+<div class="kategoriler">
+<button onclick="filterFilms('all')">🎬 Tümü</button>
+<button onclick="filterFilms('Dram')">🎭 Dram</button>
+<button onclick="filterFilms('Bilim Kurgu')">🚀 Bilim Kurgu</button>
+<button onclick="showFavorites()">⭐ Favoriler</button>
+</div>
+
 <div class="film-grid">
 
-<div class="film" onclick="openTrailer('Ki4haFrqSrw')">
+<div class="film" data-category="Dram" onclick="openTrailer('Ki4haFrqSrw')">
 <img src="yesil-yol.jpg">
-
 <div class="film-info">
 <h3>Yeşil Yol</h3>
 <p><b>IMDb:</b> 8.6/10</p>
-<p><b>Yaş Sınırı:</b> 13+</p>
-<p><b>Tür:</b> Dram, Suç</p>
+<p><b>Yaş:</b> 13+</p>
+<p><b>Tür:</b> Dram</p>
 <p><b>Yönetmen:</b> Frank Darabont</p>
 <p><b>Oyuncular:</b> Tom Hanks, Michael Clarke Duncan</p>
-<p><b>Özet:</b> Bir hapishane görevlisinin hayatı, olağanüstü güçlere sahip bir mahkumla tanışınca değişir.</p>
+<p><b>Özet:</b> Olağanüstü güçlere sahip bir mahkumun hikayesi.</p>
+<button class="fav-btn" onclick="event.stopPropagation();toggleFavorite('Yeşil Yol')">⭐ Favorilere Ekle</button>
+</div>
 </div>
 
-</div>
-
-<div class="film" onclick="openTrailer('NmzuHjWmXOc')">
+<div class="film" data-category="Dram" onclick="openTrailer('NmzuHjWmXOc')">
 <img src="movie_278_dd75019a-fc38-4174-aeac-c13181139fa6.webp">
-
 <div class="film-info">
 <h3>Esaretin Bedeli</h3>
 <p><b>IMDb:</b> 9.3/10</p>
-<p><b>Yaş Sınırı:</b> 16+</p>
+<p><b>Yaş:</b> 16+</p>
 <p><b>Tür:</b> Dram</p>
 <p><b>Yönetmen:</b> Frank Darabont</p>
 <p><b>Oyuncular:</b> Tim Robbins, Morgan Freeman</p>
-<p><b>Özet:</b> Haksız yere hapse giren bir adamın yıllar süren özgürlük mücadelesini anlatır.</p>
+<p><b>Özet:</b> Haksız yere hapse giren bir adamın özgürlük mücadelesi.</p>
+<button class="fav-btn" onclick="event.stopPropagation();toggleFavorite('Esaretin Bedeli')">⭐ Favorilere Ekle</button>
+</div>
 </div>
 
-</div>
-
-<div class="film" onclick="openTrailer('zSWdZVtXT7E')">
+<div class="film" data-category="Bilim Kurgu" onclick="openTrailer('zSWdZVtXT7E')">
 <img src="8e0dab8699be85720ce55845065bf6dc.jpg">
-
 <div class="film-info">
 <h3>Interstellar</h3>
 <p><b>IMDb:</b> 8.7/10</p>
-<p><b>Yaş Sınırı:</b> 13+</p>
-<p><b>Tür:</b> Bilim Kurgu, Macera</p>
+<p><b>Yaş:</b> 13+</p>
+<p><b>Tür:</b> Bilim Kurgu</p>
 <p><b>Yönetmen:</b> Christopher Nolan</p>
 <p><b>Oyuncular:</b> Matthew McConaughey, Anne Hathaway</p>
-<p><b>Özet:</b> İnsanlığı kurtarmak için bir grup astronot yeni yaşanabilir gezegenler aramak üzere uzaya çıkar.</p>
+<p><b>Özet:</b> İnsanlık için yeni bir yuva arayan astronotların hikayesi.</p>
+<button class="fav-btn" onclick="event.stopPropagation();toggleFavorite('Interstellar')">⭐ Favorilere Ekle</button>
 </div>
-
 </div>
 
 </div>
 
 <div id="trailerModal" class="modal">
 <div class="modal-content">
-
 <span class="close" onclick="closeTrailer()">&times;</span>
-
-<iframe
-id="trailerFrame"
-allow="autoplay; encrypted-media"
-allowfullscreen>
-</iframe>
-
+<iframe id="trailerFrame" allowfullscreen></iframe>
 </div>
 </div>
 
@@ -191,6 +209,54 @@ document.getElementById("trailerFrame").src=
 function closeTrailer(){
 document.getElementById("trailerModal").style.display="none";
 document.getElementById("trailerFrame").src="";
+}
+
+function filterFilms(category){
+const films=document.querySelectorAll('.film');
+
+films.forEach(film=>{
+if(category==='all'){
+film.style.display='block';
+}else{
+film.style.display=
+film.dataset.category===category?'block':'none';
+}
+});
+}
+
+function toggleFavorite(movie){
+let favorites=
+JSON.parse(localStorage.getItem('favorites'))||[];
+
+if(favorites.includes(movie)){
+favorites=favorites.filter(f=>f!==movie);
+alert(movie+' favorilerden kaldırıldı');
+}else{
+favorites.push(movie);
+alert(movie+' favorilere eklendi');
+}
+
+localStorage.setItem(
+'favorites',
+JSON.stringify(favorites)
+);
+}
+
+function showFavorites(){
+const favorites=
+JSON.parse(localStorage.getItem('favorites'))||[];
+
+const films=document.querySelectorAll('.film');
+
+films.forEach(film=>{
+const title=
+film.querySelector('h3').innerText;
+
+film.style.display=
+favorites.includes(title)
+?'block'
+:'none';
+});
 }
 </script>
 
