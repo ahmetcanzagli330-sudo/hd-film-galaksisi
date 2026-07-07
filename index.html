@@ -102,26 +102,17 @@ iframe{
     <h1>HD Film Galaksisi</h1>
     <p>Film Fragmanları ve Bilgileri</p>
 </header>
-<div style="text-align:center; margin:20px 0;">
+<div class="filters">
+    <input type="text" id="searchInput" placeholder="🔍 Film Ara..." onkeyup="searchMovies()">
 
-<input
-type="text"
-id="searchInput"
-placeholder="🔍 Film Ara..."
-onkeyup="searchMovies()"
-style="padding:10px;width:300px;border-radius:5px;border:none;"
->
-
-<br><br>
-
-<button onclick="filterMovies('all')">🎬 Tümü</button>
-<button onclick="filterMovies('Dram')">🎭 Dram</button>
-<button onclick="filterMovies('Bilim Kurgu')">🚀 Bilim Kurgu</button>
-<button onclick="filterMovies('Aksiyon')">🔥 Aksiyon</button>
-<button onclick="filterMovies('Korku')">👻 Korku</button>
-<button onclick="filterMovies('Komedi')">😂 Komedi</button>
-<button onclick="filterMovies('Animasyon')">🎨 Animasyon</button>
-
+    <button onclick="filterMovies('all')">Tümü</button>
+    <button onclick="filterMovies('Dram')">Dram</button>
+    <button onclick="filterMovies('Bilim Kurgu')">Bilim Kurgu</button>
+    <button onclick="filterMovies('Aksiyon')">Aksiyon</button>
+    <button onclick="filterMovies('Korku')">Korku</button>
+    <button onclick="filterMovies('Komedi')">Komedi</button>
+    <button onclick="filterMovies('Animasyon')">Animasyon</button>
+</div>
 </div>
 <div class="film-container">
 
