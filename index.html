@@ -1,190 +1,97 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B7WHEHZP89"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'G-B7WHEHZP89');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HD Film Galaksisi</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
-background:#141414;
-color:white;
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
 }
 
 header{
-background:#000;
-padding:25px;
-text-align:center;
-border-bottom:3px solid #e50914;
+    text-align:center;
+    padding:20px;
+    background:black;
 }
 
 header h1{
-color:#e50914;
-font-size:45px;
+    color:red;
+    margin:0;
 }
 
-header p{
-color:#ccc;
-margin-top:8px;
-}
-
-.search-box{
-text-align:center;
-padding:20px;
-}
-
-.search-box input{
-width:90%;
-max-width:500px;
-padding:12px;
-border:none;
-border-radius:8px;
-font-size:16px;
-}
-
-.kategoriler{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:10px;
-padding-bottom:20px;
-}
-
-.kategoriler button{
-padding:10px 15px;
-border:none;
-border-radius:6px;
-background:#333;
-color:white;
-cursor:pointer;
-font-weight:bold;
-}
-
-.kategoriler button:hover{
-background:#e50914;
-}
-
-.film-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-padding:25px;
+.film-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;
+    padding:20px;
 }
 
 .film{
-background:#222;
-border-radius:12px;
-overflow:hidden;
-transition:.3s;
-position:relative;
-}
-
-.film:hover{
-transform:scale(1.03);
+    background:#1b1b1b;
+    border-radius:10px;
+    overflow:hidden;
 }
 
 .film img{
-width:100%;
-height:420px;
-object-fit:cover;
+    width:100%;
+    height:250px;
+    object-fit:cover;
 }
 
 .film-info{
-padding:15px;
+    padding:15px;
 }
 
-.film-info h3{
-margin-bottom:10px;
-font-size:24px;
-}
-
-.film-info p{
-margin:5px 0;
-font-size:14px;
-color:#ddd;
-}
-
-.fav-btn{
-width:100%;
-padding:10px;
-margin-top:10px;
-background:#e50914;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    cursor:pointer;
+    margin-top:8px;
 }
 
 .trailer-btn{
-width:100%;
-padding:10px;
-margin-top:10px;
-background:#444;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
+    background:#555;
+    color:white;
+}
+
+.fav-btn{
+    background:red;
+    color:white;
 }
 
 .modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.95);
-z-index:9999;
+    display:none;
+    position:fixed;
+    z-index:1000;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.9);
 }
 
 .modal-content{
-width:90%;
-max-width:1000px;
-margin:30px auto;
+    width:80%;
+    max-width:900px;
+    margin:50px auto;
 }
 
 .close{
-float:right;
-font-size:40px;
-cursor:pointer;
-color:white;
-margin-bottom:10px;
+    color:white;
+    float:right;
+    font-size:35px;
+    cursor:pointer;
 }
 
 iframe{
-width:100%;
-height:600px;
-border:none;
-}
-
-@media(max-width:768px){
-.film img{
-height:300px;
-}
-
-iframe{
-height:300px;
-}
-
-header h1{
-font-size:30px;
-}
+    width:100%;
+    height:500px;
 }
 </style>
 </head>
@@ -192,198 +99,104 @@ font-size:30px;
 <body>
 
 <header>
-<h1>HD Film Galaksisi</h1>
-<p>Film Fragmanları ve Bilgileri</p>
+    <h1>HD Film Galaksisi</h1>
+    <p>Film Fragmanları ve Bilgileri</p>
 </header>
 
-<div class="search-box">
-<input
-type="text"
-id="searchInput"
-placeholder="🔍 Film Ara..."
-onkeyup="searchFilms()">
-</div>
+<div class="film-container">
 
-<div class="kategoriler">
-<button onclick="filterFilms('all')">🎬 Tümü</button>
-<button onclick="filterFilms('Dram')">🎭 Dram</button>
-<button onclick="filterFilms('Bilim Kurgu')">🚀 Bilim Kurgu</button>
-<button onclick="filterFilms('Aksiyon')">🔥 Aksiyon</button>
-<button onclick="filterFilms('Korku')">👻 Korku</button>
-<button onclick="filterFilms('Komedi')">😂 Komedi</button>
-  <button onclick="filterFilms('Animasyon')">🎨 Animasyon</button>
-<button onclick="showFavorites()">⭐ Favoriler</button>
-</div>
+    <!-- Yeşil Yol -->
+    <div class="film">
+        <img src="yesil-yol.jpg">
 
-<div class="film-grid">
+        <div class="film-info">
+            <h2>Yeşil Yol</h2>
 
-<div class="film" data-category="Dram">
-<img src="yesil-yol.jpg">
+            <p><b>IMDb:</b> ⭐ 8.6</p>
+            <p><b>Yıl:</b> 1999</p>
+            <p><b>Tür:</b> Dram</p>
+            <p><b>Yönetmen:</b> Frank Darabont</p>
+            <p><b>Oyuncular:</b> Tom Hanks, Michael Clarke Duncan</p>
+            <p><b>Özet:</b> Olağanüstü güçlere sahip bir mahkumun etkileyici hikayesi.</p>
 
-<div class="film-info">
-<h3>Yeşil Yol</h3>
-<p><b>IMDb:</b> ⭐ 8.6</p>
-<p><b>Yaş:</b> 13+</p>
-<p><b>Tür:</b> Dram</p>
-<p><b>Yönetmen:</b> Frank Darabont</p>
-<p><b>Oyuncular:</b> Tom Hanks, Michael Clarke Duncan</p>
-<p><b>Özet:</b> Olağanüstü güçlere sahip bir mahkumun etkileyici hikayesi.</p>
+            <button class="trailer-btn" onclick="openTrailer('Ki4haFrqSrw')">
+                🎬 Fragmanı İzle
+            </button>
 
-<button class="trailer-btn" onclick="openTrailer('Ki4haFrqSrw')">
-🎬 Fragmanı İzle
-</button>
+            <button class="fav-btn">
+                ⭐ Favorilere Ekle
+            </button>
+        </div>
+    </div>
 
-<button class="fav-btn" onclick="toggleFavorite('Yeşil Yol')">
-⭐ Favorilere Ekle
-</button>
-</div>
-</div>
+    <!-- Esaretin Bedeli -->
+    <div class="film">
+        <img src="movie_278_dd75019a-fc38-4174-aeac-c13181139fa6.webp">
 
-<div class="film" data-category="Dram">
-<img src="movie_278_dd75019a-fc38-4174-aeac-c13181139fa6.webp">
+        <div class="film-info">
+            <h2>Esaretin Bedeli</h2>
 
-<div class="film-info">
-<h3>Esaretin Bedeli</h3>
-<p><b>IMDb:</b> ⭐ 9.3</p>
-<p><b>Yaş:</b> 16+</p>
-<p><b>Tür:</b> Dram</p>
-<p><b>Yönetmen:</b> Frank Darabont</p>
-<p><b>Oyuncular:</b> Tim Robbins, Morgan Freeman</p>
-<p><b>Özet:</b> Haksız yere hapse giren bir adamın özgürlüğe uzanan yolculuğu.</p>
+            <p><b>IMDb:</b> ⭐ 9.3</p>
+            <p><b>Yıl:</b> 1994</p>
+            <p><b>Tür:</b> Dram</p>
+            <p><b>Yönetmen:</b> Frank Darabont</p>
+            <p><b>Oyuncular:</b> Tim Robbins, Morgan Freeman</p>
+            <p><b>Özet:</b> Haksız yere hapse giren bir adamın özgürlüğe uzanan yolculuğu.</p>
 
-<button class="trailer-btn" onclick="openTrailer('NmzuHjWmXOc')">
-🎬 Fragmanı İzle
-</button>
+            <button class="trailer-btn" onclick="openTrailer('NmzuHjWmXOc')">
+                🎬 Fragmanı İzle
+            </button>
 
-<div class="film" data-category="Bilim Kurgu">
-<img src="8e0dab8699be85720ce55845065bf6dc.jpg">
+            <button class="fav-btn">
+                ⭐ Favorilere Ekle
+            </button>
+        </div>
+    </div>
 
-<div class="film-info">
-<h3>Interstellar</h3>
-<p><b>IMDb:</b> ⭐ 8.7</p>
-<p><b>Yaş:</b> 13+</p>
-<p><b>Tür:</b> Bilim Kurgu</p>
-<p><b>Yönetmen:</b> Christopher Nolan</p>
-<p><b>Oyuncular:</b> Matthew McConaughey, Anne Hathaway</p>
-<p><b>Özet:</b> İnsanlığın geleceği için yıldızlararası yolculuk.</p>
+    <!-- Interstellar -->
+    <div class="film">
+        <img src="8e0dab8699be85720ce55845065bf6dc.jpg">
 
-<button class="trailer-btn" onclick="openTrailer('zSWdZVtXT7E')">
-🎬 Fragmanı İzle
-</button>
+        <div class="film-info">
+            <h2>Interstellar</h2>
 
-<button class="fav-btn" onclick="toggleFavorite('Interstellar')">
-⭐ Favorilere Ekle
-</button>
-</div>
-</div>
+            <p><b>IMDb:</b> ⭐ 8.7</p>
+            <p><b>Yıl:</b> 2014</p>
+            <p><b>Tür:</b> Bilim Kurgu</p>
+            <p><b>Yönetmen:</b> Christopher Nolan</p>
+            <p><b>Oyuncular:</b> Matthew McConaughey, Anne Hathaway</p>
+            <p><b>Özet:</b> İnsanlığın geleceği için yıldızlararası yolculuk.</p>
+
+            <button class="trailer-btn" onclick="openTrailer('zSWdZVtXT7E')">
+                🎬 Fragmanı İzle
+            </button>
+
+            <button class="fav-btn">
+                ⭐ Favorilere Ekle
+            </button>
+        </div>
+    </div>
 
 </div>
 
-
-
-  
 <div id="trailerModal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeTrailer()">&times;</span>
-<iframe id="trailerFrame" allowfullscreen></iframe>
-</div>
+    <div class="modal-content">
+        <span class="close" onclick="closeTrailer()">&times;</span>
+        <iframe id="trailerFrame" allowfullscreen></iframe>
+    </div>
 </div>
 
 <script>
-
 function openTrailer(videoId){
-document.getElementById("trailerModal").style.display="block";
-document.getElementById("trailerFrame").src=
-"https://www.youtube.com/embed/"+videoId+"?autoplay=1";
+    document.getElementById("trailerModal").style.display="block";
+    document.getElementById("trailerFrame").src=
+    "https://www.youtube.com/embed/"+videoId+"?autoplay=1";
 }
 
 function closeTrailer(){
-document.getElementById("trailerModal").style.display="none";
-document.getElementById("trailerFrame").src="";
+    document.getElementById("trailerModal").style.display="none";
+    document.getElementById("trailerFrame").src="";
 }
-
-function filterFilms(category){
-
-const films=document.querySelectorAll('.film');
-
-films.forEach(film=>{
-
-if(category==="all"){
-film.style.display="block";
-}else{
-film.style.display=
-film.dataset.category===category
-? "block"
-: "none";
-}
-
-});
-}
-
-function searchFilms(){
-
-let input=document
-.getElementById("searchInput")
-.value
-.toLowerCase();
-
-let films=document.querySelectorAll(".film");
-
-films.forEach(film=>{
-
-let title=
-film.querySelector("h3")
-.innerText
-.toLowerCase();
-
-film.style.display=
-title.includes(input)
-? "block"
-: "none";
-
-});
-}
-
-function toggleFavorite(movie){
-
-let favorites=
-JSON.parse(localStorage.getItem("favorites")) || [];
-
-if(favorites.includes(movie)){
-favorites=
-favorites.filter(f=>f!==movie);
-alert(movie+" favorilerden kaldırıldı");
-}else{
-favorites.push(movie);
-alert(movie+" favorilere eklendi");
-}
-
-localStorage.setItem(
-"favorites",
-JSON.stringify(favorites)
-);
-}
-
-function showFavorites(){
-
-let favorites=
-JSON.parse(localStorage.getItem("favorites")) || [];
-
-let films=document.querySelectorAll(".film");
-
-films.forEach(film=>{
-
-let title=
-film.querySelector("h3").innerText;
-
-film.style.display=
-favorites.includes(title)
-? "block"
-: "none";
-
-});
-}
-
 </script>
 
 </body>
